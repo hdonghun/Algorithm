@@ -1,6 +1,11 @@
 def solution(x):
-    answer= 0
-    for i in str(x):
-        answer += int(i)
-
-    return x % answer == 0
+    result = 0
+    x = str(x)
+    
+    for i in x:
+        result += int(i)
+        
+    if int(x) % result == 0:
+        return True
+    else:
+        return False
