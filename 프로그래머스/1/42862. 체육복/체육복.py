@@ -4,18 +4,21 @@ def solution(n, lost, reserve):
     lost.sort()
     reserve.sort()
     
-    # 1. 여분의 체육복을 가진 학생이 도난당한 경우를 처리
-    new_lost = [l for l in lost if l not in reserve]
-    new_reserve = [r for r in reserve if r not in lost]
-    
-    # 2. 남은 여분의 체육복을 가진 학생들이 도난당한 경우를 처리
-    for r in new_reserve:
-        if r - 1 in new_lost:
-            new_lost.remove(r - 1)
-        elif r + 1 in new_lost:
-            new_lost.remove(r + 1)
-    
-    # 3. 남은 여분의 체육복을 가진 학생들이 도난당하지 않은 경우를 처리
-    answer = n - len(new_lost)
+    for i in range(1, n+1):
+        if i in lost and i in reserve: # 여분의 체육복을 가진 학생이 도난당한 경우
+            lost.remove(i)
+            reserve.remove(i)
+            
+        elif i in reserve: # 여분의 체육복을 가진 학생이 도난당하지 않았을 경우
+            if i-1 in lost:
+                lost.remove(i-1)
+                reserve.remove(i)
+            elif i+1 in lost:
+                if i+1 in reserve:
+                    continue
+                lost.remove(i+1)   
+                reserve.remove(i)
+                
+    answer = n - len(lost)
     
     return answer
