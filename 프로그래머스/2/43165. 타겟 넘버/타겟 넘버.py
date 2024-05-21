@@ -1,7 +1,15 @@
-def solution(numbers, target):
-    if not numbers and target == 0 :
-        return 1
-    elif not numbers:
-        return 0
+def dfs(numbers, target_num, curr_sum, curr_idx):
+    if curr_idx == len(numbers):
+        if curr_sum == target_num:
+            return 1
+        else:
+            return 0
     else:
-        return solution(numbers[1:], target-numbers[0]) + solution(numbers[1:], target+numbers[0])
+        answer = 0
+        answer += dfs(numbers, target_num, curr_sum+numbers[curr_idx], curr_idx+1)
+        answer += dfs(numbers, target_num, curr_sum-numbers[curr_idx], curr_idx+1)
+        return answer
+
+def solution(numbers, target):
+    answer = dfs(numbers, target, 0, 0)
+    return answer
