@@ -1,9 +1,10 @@
 def solution(n):
     answer = 0
 
-    n = str(n)
+    t = len(str(n))
     
-    for i in n:
-        answer+=int(i)
+    for i in range(t):
+        answer += n % 10
+        n = n // 10 
     
     return answer
