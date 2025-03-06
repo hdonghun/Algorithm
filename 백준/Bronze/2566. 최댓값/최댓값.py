@@ -1,12 +1,10 @@
-max_value = 0
-max_row, max_col = 0, 0
+record = [0, 0, 0]
 
 for i in range(9):
-    row = list(map(int, input().split()))  
+    max_number = list(map(int, input().split()))
     for j in range(9):
-        if row[j] >= max_value:
-            max_value = row[j]
-            max_row, max_col = i + 1, j + 1  
+        if max_number[j] >= record[0]:
+            record = [max_number[j], i + 1, j + 1]
 
-print(max_value)
-print(max_row, max_col)
+print(record[0])
+print(record[1], record[2])
