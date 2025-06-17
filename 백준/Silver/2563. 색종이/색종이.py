@@ -19,3 +19,26 @@ for row in range(100):
     sum += paper[row].count(1)
 
 print(sum)
+
+
+
+
+
+
+
+# 나중에 다시 풀었을 떄
+
+n = int(input())
+data = []
+for i in range(n):
+    x, y = map(int, input().split())
+    data.append((x,y))
+    
+covered = set()
+for x, y in data:
+    for i in range(x, x+10):
+        for j in range(y, y+10):
+            covered.add((i, j))
+
+print(len(covered))
+
